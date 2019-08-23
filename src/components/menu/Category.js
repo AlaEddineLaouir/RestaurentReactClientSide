@@ -5,12 +5,16 @@ class Category extends Component {
     const { id, name, dishes } = this.props.category;
     return (
       <div className="col-md-4">
-        <h3>{name}</h3>
-        <ul className="list-group">
-          {dishes.map(dishe => (
-            <Dishe key={dishe.id} dishe={dishe} />
-          ))}
-        </ul>
+        <div className="card">
+          <div className="card-header">
+            <h3 className="card-title">{name}</h3>
+          </div>
+          <div className="card-body">
+            {dishes.map(dishe => (
+              <Dishe key={dishe.id} dishe={dishe} />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

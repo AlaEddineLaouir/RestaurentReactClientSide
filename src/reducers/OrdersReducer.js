@@ -1,8 +1,18 @@
+import {
+  GET_USER_ORDERS,
+  SET_ORDER_TO_EDIT,
+  CANCEL_ORDER,
+  MAKE_ORDER,
+  EDIT_ORDER
+} from "../actions/types";
+
 const initialState = {
   Orders: [
     {
       id: 1,
-      state: "Valide",
+      state: "valide",
+      date: "25/12/2019",
+      total: 1550,
       orders: [
         {
           dish: {
@@ -27,6 +37,8 @@ const initialState = {
     {
       id: 2,
       state: "traitement",
+      date: "12/06/2019",
+      total: 1550,
       orders: [
         {
           dish: {
@@ -48,11 +60,39 @@ const initialState = {
         }
       ]
     }
-  ]
+  ],
+  NewOrder: {},
+  EditOrder: {}
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case GET_USER_ORDERS:
+      return state;
+    case SET_ORDER_TO_EDIT:
+      return { ...state, EditOrder: action.payload };
+    case CANCEL_ORDER:
+      return {
+        ...state,
+        Orders: state.Orders.filter(order => order.id !== action.payload)
+      };
+    case MAKE_ORDER:
+      return {
+        ...state,
+        NewOrder: {},
+        Orders: state.Orders.concat(action.payload)
+      };
+    case EDIT_ORDER:
+      return {
+        ...state,
+        Orders: state.Orders.map(order => {
+          if (order.id === action.payload.id) {
+            return Object.assign({}, order, action.payload);
+          } else {
+            return order;
+          }
+        })
+      };
     default:
       return state;
   }

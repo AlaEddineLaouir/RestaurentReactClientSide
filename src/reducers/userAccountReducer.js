@@ -1,3 +1,5 @@
+import { EDIT_PROFILE } from "../actions/types";
+
 const initialState = {
   User: {
     name: "mehdi",
@@ -9,6 +11,8 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case EDIT_PROFILE:
+      return { ...state, User: Object.assign({}, state.User, action.payload) };
     default:
       return state;
   }

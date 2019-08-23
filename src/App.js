@@ -4,6 +4,7 @@ import Home from "./components/Pages/home";
 import LoginForm from "./components/Authentication/LoginForm";
 import SignInForm from "./components/Authentication/SignInForm";
 import UserSpace from "./components/User Space/UserSpace";
+import OrdersList from "./components/Orders/OrdersList";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -11,6 +12,7 @@ import store from "./store";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import CreateOrder from "./components/Orders/CreateOrder";
 
 function App() {
   return (
