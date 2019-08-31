@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import CreateOrder from "../Orders/CreateOrder";
 import OrdersList from "../Orders/OrdersList";
 import Profile from "./Profile";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 //this component will hace a state that stores which childe component
 // to display. and will have a nav bar to change the state value.
 class UserSpace extends Component {
@@ -13,6 +15,10 @@ class UserSpace extends Component {
   };
 
   render() {
+    if (!this.props.isLoggedIn) {
+      return <Redirect to="/Login" />;
+    }
+
     switch (this.state.show) {
       case "MyOrders":
         return (
@@ -110,4 +116,11 @@ class UserNavigation extends Component {
     );
   }
 }
-export default UserSpace;
+
+const mapStateToProp = state => ({
+  isLoggedIn: state.userAccount.isLoggedIn
+});
+export default connect(
+  mapStateToProp,
+  {}
+)(UserSpace);

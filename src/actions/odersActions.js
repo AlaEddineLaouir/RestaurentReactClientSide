@@ -6,7 +6,10 @@ import {
   EDIT_ORDER
 } from "./types";
 
-export const getUserOrders = () => dispatch => {
+import axios from "axios";
+
+export const getUserOrders = userId => async dispatch => {
+  //const res = await axios.get("http://localhost/api/user");
   dispatch({
     type: GET_USER_ORDERS
   });

@@ -5,3 +5,6 @@ export const CANCEL_ORDER = "CANCEL_ORDER";
 export const MAKE_ORDER = "MAKE_ORDER";
 export const EDIT_PROFILE = "EDIT_PROFILE";
 export const EDIT_ORDER = "EDIT_ORDER";
+
+export const GET_USER = "GET_USER";
+export const LOGIN_USER = "LOGIN_USER";

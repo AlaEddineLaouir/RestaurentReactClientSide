@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { editProfil } from "../../actions/userAccountActions";
+import { editProfil, getUser } from "../../actions/userAccountActions";
 class Profile extends Component {
   state = {};
 
   componentDidMount() {
+    this.props.getUser(this.props.token);
     this.setState({ ...this.props.user });
   }
   onChange = e => {
@@ -86,12 +87,15 @@ class Profile extends Component {
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
-  editProfil: PropTypes.func.isRequired
+  editProfil: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired
 };
 const mapStateToProp = state => ({
-  user: state.userAccount.User
+  user: state.userAccount.User,
+  token: state.userAccount.token
 });
 export default connect(
   mapStateToProp,
-  { editProfil }
+  { editProfil, getUser }
 )(Profile);
