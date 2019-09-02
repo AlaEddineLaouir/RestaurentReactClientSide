@@ -10,7 +10,7 @@ class OrdersList extends Component {
     edit: false
   };
   componentDidMount() {
-    this.props.getUserOrders(this.props.userId);
+    this.props.getUserOrders(this.props.token);
   }
   handleShowEditOrder = order => {
     this.setState({ edit: true, order });
@@ -38,13 +38,13 @@ class OrdersList extends Component {
 
 OrdersList.propTypes = {
   orders: PropTypes.array.isRequired,
-  userId: PropTypes.number.isRequired,
+  token: PropTypes.string.isRequired,
   getUserOrders: PropTypes.func.isRequired
 };
 
 const mapStateToProp = state => ({
   orders: state.userOrders.Orders,
-  userId: state.userAccount.User.id
+  token: state.userAccount.token
 });
 
 export default connect(

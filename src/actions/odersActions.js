@@ -7,11 +7,14 @@ import {
 } from "./types";
 
 import axios from "axios";
+import Axios from "axios";
 
-export const getUserOrders = userId => async dispatch => {
-  //const res = await axios.get("http://localhost/api/user");
+export const getUserOrders = () => async dispatch => {
+  const res = await axios.get("http://localhost:8000/api/user/orders");
+
   dispatch({
-    type: GET_USER_ORDERS
+    type: GET_USER_ORDERS,
+    payload: res.data.data
   });
 };
 export const setEditOrder = order => dispatch => {
@@ -20,30 +23,35 @@ export const setEditOrder = order => dispatch => {
     payload: order
   });
 };
-export const cancelOrder = orderId => dispatch => {
+export const cancelOrder = orderId => async dispatch => {
+  const res = await axios.delete(
+    "http://localhost:8000/api/user/deleteOrder/" + orderId
+  );
+
   dispatch({
     type: CANCEL_ORDER,
     payload: orderId
   });
 };
 
-export const makeOrder = orders => dispatch => {
-  const order = {
-    id: 3,
-    state: "nonValide",
-    date: "30/12/2019",
-    total: 2000,
-    orders
-  };
+export const makeOrder = orders => async dispatch => {
+  const res = await axios.post("http://localhost:8000/api/user/makeOrder", {
+    orders: orders
+  });
+
   dispatch({
     type: MAKE_ORDER,
-    payload: order
+    payload: res.data.data
   });
 };
 
-export const editOrder = order => dispatch => {
+export const editOrder = order => async dispatch => {
+  const res = await axios.put("http://localhost:8000/api/user/editOrder", {
+    order
+  });
+
   dispatch({
     type: EDIT_ORDER,
-    payload: order
+    payload: res.data.data
   });
 };

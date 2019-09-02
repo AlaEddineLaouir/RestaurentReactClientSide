@@ -6,7 +6,7 @@ class Profile extends Component {
   state = {};
 
   componentDidMount() {
-    this.props.getUser(this.props.token);
+    this.props.getUser();
     this.setState({ ...this.props.user });
   }
   onChange = e => {
@@ -88,12 +88,10 @@ class Profile extends Component {
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
   editProfil: PropTypes.func.isRequired,
-  getUser: PropTypes.func.isRequired,
-  token: PropTypes.string.isRequired
+  getUser: PropTypes.func.isRequired
 };
 const mapStateToProp = state => ({
-  user: state.userAccount.User,
-  token: state.userAccount.token
+  user: state.userAccount.User
 });
 export default connect(
   mapStateToProp,

@@ -16,17 +16,17 @@ class Order extends Component {
   };
 
   handleCancelOrder = () => {
-    if (this.props.order.state !== "valide") {
-      console.log("Votre Commande ne peut plus etre modifier ou annuler");
-    } else {
+    if (this.props.order.state === "nonValide") {
       this.props.cancelOrder(this.props.order.id);
+    } else {
+      console.log("Votre Commande ne peut plus etre modifier ou annuler");
     }
   };
   handleEditOrder = () => {
-    if (this.props.order.state !== "valide") {
-      console.log("Votre Commande ne peut plus etre modifier ou annuler");
-    } else {
+    if (this.props.order.state == "nonValide") {
       this.props.showEditOrder(this.props.order);
+    } else {
+      console.log("Votre Commande ne peut plus etre modifier ou annuler");
     }
   };
   render() {
