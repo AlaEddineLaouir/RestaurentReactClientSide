@@ -3,6 +3,9 @@ export default class NewOrder extends Component {
   handleAction = () => {
     this.props.action();
   };
+  handleAdressChange = e => {
+    this.props.onAdressChange(e.target.value);
+  };
   render() {
     const { orders, actionTitle } = this.props;
     return (
@@ -16,6 +19,16 @@ export default class NewOrder extends Component {
             >
               {actionTitle}
             </button>
+            <form>
+              <div className="form-group">
+                <input
+                  type="text"
+                  placeholder="Adress"
+                  onChange={this.handleAdressChange}
+                  className="form-control"
+                />
+              </div>
+            </form>
           </div>
           <div className="card-body bg-light">
             {orders.map(order => (

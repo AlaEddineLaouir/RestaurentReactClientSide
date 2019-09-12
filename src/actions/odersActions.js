@@ -34,9 +34,10 @@ export const cancelOrder = orderId => async dispatch => {
   });
 };
 
-export const makeOrder = orders => async dispatch => {
+export const makeOrder = (orders, adress) => async dispatch => {
   const res = await axios.post("http://localhost:8000/api/user/makeOrder", {
-    orders: orders
+    orders: orders,
+    adress: adress
   });
 
   dispatch({

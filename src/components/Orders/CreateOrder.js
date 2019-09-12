@@ -9,19 +9,23 @@ import NewOrder from "./NewOrder";
 class CreateOrder extends Component {
   state = {
     displayMenu: true,
-    orders: []
+    orders: [],
+    adress: ""
   };
   componentDidMount() {
     this.props.getMenu();
   }
   handleAction = () => {
-    this.props.makeOrder(this.state.orders);
+    this.props.makeOrder(this.state.orders, this.state.adress);
   };
   handleShowMenu = () => {
     this.setState({ displayMenu: true });
   };
   handleShowOrder = () => {
     this.setState({ displayMenu: false });
+  };
+  handleAdressChange = adress => {
+    this.setState({ adress: adress });
   };
   onDishAdded = (dish, quantity) => {
     let existe = false;
@@ -90,6 +94,7 @@ class CreateOrder extends Component {
             onDelete={this.onDelete}
             action={this.handleAction}
             actionTitle="Commander"
+            onAdressChange={this.handleAdressChange}
           />
         </div>
       );
