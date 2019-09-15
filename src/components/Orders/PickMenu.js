@@ -26,15 +26,27 @@ class Category extends Component {
         <div className="card">
           <div className="card-header bg-success">
             <h3 className="card-title text-center text-white">{name}</h3>
+            <button
+              className="btn btn-secondary float-right"
+              type="button"
+              data-toggle="collapse"
+              data-target={"#list" + name}
+              aria-expanded="false"
+              aria-controls={"list" + name}
+            >
+              <span className="navbar-toggler-icon">List</span>
+            </button>
           </div>
-          <div className="card-body bg-light">
-            {dishes.map(dishe => (
-              <MenuDishe
-                key={dishe.id}
-                dishe={dishe}
-                addDish={this.props.addDish}
-              />
-            ))}
+          <div className="collapse" id={"list" + name}>
+            <div className="card-body bg-light">
+              {dishes.map(dishe => (
+                <MenuDishe
+                  key={dishe.id}
+                  dishe={dishe}
+                  addDish={this.props.addDish}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

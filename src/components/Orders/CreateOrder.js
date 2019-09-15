@@ -16,7 +16,18 @@ class CreateOrder extends Component {
     this.props.getMenu();
   }
   handleAction = () => {
-    this.props.makeOrder(this.state.orders, this.state.adress);
+    if (
+      typeof this.state.orders !== "undefined" &&
+      this.state.orders.length > 0
+    ) {
+      if (this.state.adress !== "") {
+        this.props.makeOrder(this.state.orders, this.state.adress);
+      } else {
+        alert("Error: An Adress Is required");
+      }
+    } else {
+      alert("Error: Au moin vous commander un palt");
+    }
   };
   handleShowMenu = () => {
     this.setState({ displayMenu: true });
@@ -65,7 +76,7 @@ class CreateOrder extends Component {
   render() {
     if (this.state.displayMenu) {
       return (
-        <div>
+        <div className="container text-center">
           <button onClick={this.handleShowMenu} className="btn btn-primary">
             Menu
           </button>
@@ -80,7 +91,7 @@ class CreateOrder extends Component {
       );
     } else {
       return (
-        <div className="container">
+        <div className="container text-center">
           <button onClick={this.handleShowMenu} className="btn btn-primary">
             Menu
           </button>

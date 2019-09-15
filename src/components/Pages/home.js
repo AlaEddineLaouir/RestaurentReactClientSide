@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Menu from "../menu/menu";
+import { Link } from "react-router-dom";
 class Home extends Component {
   render() {
     return (
@@ -27,12 +28,12 @@ class Home extends Component {
                 </a>
               </li>
             </ul>
-            <button
+            <Link
+              to={"/Login"}
               className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
             >
               Commander Maintenant
-            </button>
+            </Link>
           </div>
         </nav>
 

@@ -1,4 +1,10 @@
-import { EDIT_PROFILE, LOGIN_USER, GET_USER } from "../actions/types";
+import {
+  EDIT_PROFILE,
+  LOGIN_USER,
+  GET_USER,
+  LOGOUT_USER,
+  SIGN_IN
+} from "../actions/types";
 
 const initialState = {
   User: {},
@@ -14,6 +20,20 @@ export default function(state = initialState, action) {
         isLoggedIn: true,
         User: action.payload.user,
         token: action.payload.token
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        isLoggedIn: false,
+        User: {},
+        token: ""
+      };
+    case SIGN_IN:
+      return {
+        ...state,
+        User: action.payload.user,
+        token: action.payload.token,
+        isLoggedIn: true
       };
     case GET_USER:
       return {

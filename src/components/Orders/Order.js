@@ -19,14 +19,14 @@ class Order extends Component {
     if (this.props.order.state === "nonValide") {
       this.props.cancelOrder(this.props.order.id);
     } else {
-      console.log("Votre Commande ne peut plus etre modifier ou annuler");
+      alert("Votre Commande ne peut plus etre modifier ou annuler");
     }
   };
   handleEditOrder = () => {
     if (this.props.order.state == "nonValide") {
       this.props.showEditOrder(this.props.order);
     } else {
-      console.log("Votre Commande ne peut plus etre modifier ou annuler");
+      alert("Votre Commande ne peut plus etre modifier ou annuler");
     }
   };
   render() {
@@ -37,10 +37,11 @@ class Order extends Component {
         <div className="col-sm-6">
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title">Date de Commande : {order.date}</h5>
+              <h5 className="card-title">
+                Date de Commande : {new Date(order.date).toLocaleDateString()}
+              </h5>
               <p className="card-text">
                 <span>Etat : {order.state}</span>
-                <span className="float-right">Total : {order.total} </span>
               </p>
               <button
                 onClick={this.handleShowDetails}
@@ -58,10 +59,11 @@ class Order extends Component {
         <div className="col-sm-6">
           <div className="card">
             <div className="card-header">
-              <h5 className="card-title">Date de Commande : {order.date}</h5>
+              <h5 className="card-title">
+                Date de Commande : {new Date(order.date).toLocaleDateString()}
+              </h5>
               <p className="card-text">
                 <span>Etat : {order.state}</span>
-                <span className="float-right">Total : {order.total} </span>
               </p>
               <button
                 onClick={this.handleHideDetails}

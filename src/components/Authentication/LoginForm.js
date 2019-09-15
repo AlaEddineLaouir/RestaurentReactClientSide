@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logIn } from "../../actions/userAccountActions";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 class LoginForm extends Component {
   state = {
     email: "",
@@ -29,7 +29,15 @@ class LoginForm extends Component {
           <div className="row justify-content-center">
             <div className="col-md-8">
               <div className="card">
-                <div className="card-header">Login</div>
+                <div className="card-header bg-dark">
+                  <h4 className="text-light">Login</h4>
+                  <Link
+                    to="/SignIn"
+                    className="btn btn-outline-success float-right"
+                  >
+                    S'inscrire
+                  </Link>
+                </div>
 
                 <div className="card-body">
                   <form method="POST" action="/login/employee">
