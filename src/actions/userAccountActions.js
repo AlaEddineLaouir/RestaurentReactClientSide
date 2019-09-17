@@ -33,7 +33,8 @@ export const signin = user => async dispatch => {
     const res = await axios.post("http://localhost:8000/api/register", {
       ...user
     });
-    console.log(res.data.data);
+    Axios.defaults.headers["Authorization"] = "Bearer " + res.data.token;
+
     dispatch({
       type: SIGN_IN,
       payload: { user: user, token: res.data.data }
